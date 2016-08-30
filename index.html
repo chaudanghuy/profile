@@ -545,7 +545,7 @@
                     <p><strong>Projects:</strong></p>
                     <p>① Magazine Project: <a href="http://www.gac8.com" target="_blank">Project link</a></p>
                     <p>② Ecommerce Project (T-shirt shop): <a href="http://shop.aothun.vn" target="_blank">Project link</a></p>
-                    <p>③ Shop Project (Iphone shop): <a href="http://www.ducngoco2.com" target="_blank">Project link</a></p>
+                    <p>③ Shop Project (Iphone shop): <a href="http://ducngoco2.com" target="_blank">Project link</a></p>
                   </div>
                   <!-- /Content -->
                 </div>
@@ -1084,7 +1084,7 @@
                         <!-- /Form Field -->
                         <!-- Form Field -->
                         <div class="form-group">
-                          <input type="submit" class="btn btn-default form-send" value="Send!">
+                          <input id="submit" type="submit" class="btn btn-default form-send" value="Send!">
                         </div>  
                         <!-- /Form Field -->
                       </form>
@@ -1175,7 +1175,7 @@
   <div class="modal-bg"></div>
   <div class="modal-content">
     <h4 class="modal-title"><i class="fa fa-check-circle"></i> Success!</h4>
-    <p>Your message has been sent to us.</p>
+    <p>Your message has been sent!</p>
   </div>
 </div>
 <!-- /Form Sucess -->
@@ -1230,5 +1230,31 @@
 <!-- /Cross-browser -->
 <!-- Configurations -->
 <script src="webroot/js/main.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+	    $("#submit").click(function() {
+	    	var data = {
+	    		name: $("#name").val();
+		        email: $("#email").val();
+		        subject: $("#subject").val();
+		        message: $("#message").val();
+	    	};
+
+	        $.ajax({
+	            type: "POST",
+	            url: "http://email.ducngoco2.com/email.php",
+	            data: data,
+	            success: function(){
+		            $('#contactSuccess').modal('show');
+	            }, error: function() {
+	            	$('#contactError').modal('show');
+	            }
+	        });
+
+	        return false;
+	    });
+	});
+</script>
 </body>
 </html>
