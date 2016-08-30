@@ -1234,23 +1234,11 @@
 <script type="text/javascript">
 	$(function() {
 	    $("#submit").click(function() {
-	    	var data = {
-	    		name: $("#name").val(),
-		        email: $("#email").val(),
-		        subject: $("#subject").val(),
-		        message: $("#message").val()
-	    	};
+		    var subject = $("#subject").val();
+		    var message = $("#message").val();
 
-	        $.ajax({
-	            type: "POST",
-	            url: "http://email.ducngoco2.com/email.php",
-	            data: data,
-	            success: function(){
-		            $('#contactSuccess').modal('show');
-	            }, error: function() {
-	            	$('#contactError').modal('show');
-	            }
-	        });
+	        $("#contactForm").attr("action", "mailto:someone@example.com?Subject=" + subject + "&body=" + message);
+	        $("#contactForm").submit();
 
 	        return false;
 	    });
